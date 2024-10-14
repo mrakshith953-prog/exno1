@@ -158,4 +158,4 @@ sns.boxplot(df_cleaned)
 
 sns.scatterplot(df_cleaned)
 # Result
-          <<include your Result here>>
+          The Data cleaning process is completed successfuly
