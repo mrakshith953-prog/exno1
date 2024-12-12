@@ -21,64 +21,76 @@ STEP 5: Remove outliers using IQR
 STEP 6: Use zscore of to remove outliers
 
 # Coding and Output
-            from google.colab import drive
+from google.colab import drive
 drive.mount('/content/drive')
 
 ls drive/MyDrive/'Colab Notebooks'/DATA/
 
 # **DATA CLEANING**
-
-
-
-
 import pandas as pd
 import numpy as np
 
 df=pd.read_csv('drive/MyDrive/Data Science/Data_set.csv')
 
-# CHECK OUT NULL VALUES IN DATA SET USING FUNCTION
 df_null=df.isnull()
 print(df_null)
 
-# DISPLAY THE SUM ON NULL VALUES IN EACH ROWS
+![image](https://github.com/user-attachments/assets/95e316a6-74e3-418b-8000-92551c30e9e2)
+
 df_sum=df.isnull().sum()
 print(df_sum)
 
-# DROP NULL VALUES
+![image](https://github.com/user-attachments/assets/1bd96c0f-651e-41e6-96de-6a97d002bce9)
+
 df_drop=df.isnull().dropna()
 print(df_drop)
 
-# FILL NULL VALUES WITH CONSTANT VALUE "O"
+![image](https://github.com/user-attachments/assets/54a2b2f3-4995-4897-a96f-e0417d23d056)
+
 df_null_0=df.fillna(0)
 print(df_null_0)
 
-# FILL NULL VALUES WITH ffill METHOD
+![image](https://github.com/user-attachments/assets/cf25b6c8-f5bf-452d-bfda-9230e5538710)
+
 df_null_ffill=df.ffill()
 print(df_null_ffill)
 
-# FILL NULL VALUES WITH bfill METHOD
+![image](https://github.com/user-attachments/assets/6bb2f1ae-4bd9-468c-8126-7fa30cb7146a)
+
 df_bfill=df.bfill()
 print(df_bfill)
 
- #CALCULATE MEAN VALUE OF A COLUMN AND FILL IT WITH NULL VALUES
- df_mean1=df['num_episodes'].fillna(df['num_episodes'].mean())
+![image](https://github.com/user-attachments/assets/ef069b05-ed4a-4194-93a8-f09e962643d4)
+
+df_mean1=df['num_episodes'].fillna(df['num_episodes'].mean())
 print(df_mean1)
+
+![image](https://github.com/user-attachments/assets/7e8cac54-abd7-4622-ad2f-618b2894e209)
 
 df_mean2=df['rating'].fillna(df['rating'].mean())
 print(df_mean2)
 
+![image](https://github.com/user-attachments/assets/4ae535b7-5243-450a-a7a9-3679aa88933d)
+
 df_mean3=df['current_overall_rank'].fillna(df['current_overall_rank'].mean())
 print(df_mean3)
+
+![image](https://github.com/user-attachments/assets/d4edc900-9c5f-4977-b8e0-6edecb5a0f3b)
 
 df_mean4=df['lifetime_popularity_rank'].fillna(df['lifetime_popularity_rank'].mean())
 print(df_mean4)
 
+![image](https://github.com/user-attachments/assets/6252d34d-19bb-4ed8-8a2f-ff4a72ebb7c4)
+
 df_mean5=df['watchers'].fillna(df['watchers'].mean())
 print(df_mean5)
 
-# DROP NULL VALUES
+![image](https://github.com/user-attachments/assets/3274e50c-a7d0-4413-be9c-46feeee56f30)
+
 df_dropna=df.dropna()
 print(df_dropna)
+
+![image](https://github.com/user-attachments/assets/0eb2fb50-f09a-4d56-91ab-1602e3c3e593)
 
 # **Outlier Detection and Removal - IQR**
 
@@ -89,10 +101,15 @@ age=[1,3,28,27,25,92,30,39,40,50,26,24,29,94]
 af=pd.DataFrame(age)
 print(af)
 
-# USE BOXPLOT FUNCTION HERE TO DETECT OUTLIER
+![image](https://github.com/user-attachments/assets/58e8c210-aa73-4619-bc87-7f8b3a2d4573)
+
 sns.boxplot(af)
 
+![image](https://github.com/user-attachments/assets/8d330702-2d88-4769-a494-04439aea014c)
+
 sns.scatterplot(af)
+
+![image](https://github.com/user-attachments/assets/24b2c6a8-3247-4908-954c-5cd9c0ad0b3d)
 
 q1=af.quantile(0.25)
 q2=af.quantile(0.5)
@@ -119,14 +136,24 @@ print('Lower bound:',lower_bound)
 print('Upper bound:',upper_bound)
 print('Outliers:',outliers)
 
+![image](https://github.com/user-attachments/assets/aaaddf43-55ef-402c-8c97-8d9c813062de)
+
 af=af[((af>=lower_bound)&(af<=upper_bound))]
 print(af)
 
+![image](https://github.com/user-attachments/assets/ba3e4c10-d327-4ba3-8adf-d4627844c91f)
+
 af.dropna()
+
+![image](https://github.com/user-attachments/assets/beac3af5-b7ef-4c3c-aed0-d28a4733d154)
 
 sns.boxplot(af)
 
+![image](https://github.com/user-attachments/assets/5d8b6f96-84b4-42db-aaa3-9a4389801374)
+
 sns.scatterplot(af)
+
+![image](https://github.com/user-attachments/assets/b5e89b08-50e3-489b-b0b1-58d4b2ce25ff)
 
 # **Z Score**
 
@@ -137,50 +164,40 @@ df=pd.DataFrame(data)
 
 sns.boxplot(df)
 
+![image](https://github.com/user-attachments/assets/674c8fdc-a443-41ac-b33e-f3f9faed6b5b)
+
 mean=np.mean(data)
 print(mean)
+50.724137931034484
 
 std=np.std(data)
 print(std)
+25.59889080534025
 
 z=np.abs(stats.zscore(df))
 print(z)
+
+![image](https://github.com/user-attachments/assets/20f0d255-f5f5-4d01-8156-7e7cb9c3e0d4)
 
 threshold=3
 outliers = df[abs(df) > 3]
 print("Outliers:")
 print(outliers)
 
+![image](https://github.com/user-attachments/assets/a43290be-1191-433d-be5a-25177cffc05e)
+
 df_cleaned = df[(z <= threshold)]
 print(df_cleaned)
 
+![image](https://github.com/user-attachments/assets/518250d2-adfc-469a-976d-c7c32ee650e5)
+
 sns.boxplot(df_cleaned)
 
+![image](https://github.com/user-attachments/assets/000fb4db-9817-4342-a973-c3516e8fa090)
+
 sns.scatterplot(df_cleaned)
-![Screenshot 2024-11-21 141602](https://github.com/user-attachments/assets/4a9dc9b8-c692-4f4c-b427-d9bb10ff1889)
-![Screenshot 2024-11-21 141550](https://github.com/user-attachments/assets/9d625d5f-31ec-47db-83ea-d7eb70ee3664)
-![Screenshot 2024-11-21 141526](https://github.com/user-attachments/assets/73582728-a738-4a33-9124-3dad9c27269e)
-![Screenshot 2024-11-21 141517](https://github.com/user-attachments/assets/681dafbb-f6f3-4c9e-b513-7bb30a88213f)
-![Screenshot 2024-11-21 141456](https://github.com/user-attachments/assets/2a848bb7-ee7c-4541-959a-cc5bc3fbcb23)
-![Screenshot 2024-11-21 142230](https://github.com/user-attachments/assets/1f8dca54-c4ce-4733-ae8c-0a974f879eb4)
-![Screenshot 2024-11-21 142225](https://github.com/user-attachments/assets/d3fff1b8-2f13-48f6-9faa-c88e8dc5a497)
-![Screenshot 2024-11-21 142219](https://github.com/user-attachments/assets/e45fb6c2-e07b-4123-9a99-bd69802710fc)
-![Screenshot 2024-11-21 142213](https://github.com/user-attachments/assets/5892cdeb-d84f-4984-8a39-d7eb7464638f)
-![Screenshot 2024-11-21 142206](https://github.com/user-attachments/assets/2dd89869-a840-4905-9cbf-8e765a703560)
-![Screenshot 2024-11-21 142159](https://github.com/user-attachments/assets/8330102d-4b83-4aa3-b057-f58f4f8f182c)
-![Screenshot 2024-11-21 142148](https://github.com/user-attachments/assets/c9d66d25-1b33-4747-a6ba-83271e80c816)
-![Screenshot 2024-11-21 142020](https://github.com/user-attachments/assets/7d1db144-dfb3-4e5c-ab66-5d7c2e5f80ff)
-![Screenshot 2024-11-21 142014](https://github.com/user-attachments/assets/fb1455f6-15e1-44da-a0c4-ba24d97654b9)
-![Screenshot 2024-11-21 142008](https://github.com/user-attachments/assets/5fdd6409-1a9c-4f69-a2ab-6185e023a26b)
-![Screenshot 2024-11-21 142001](https://github.com/user-attachments/assets/acdb5786-73ab-4f8d-90ee-2b3757029519)
-![Screenshot 2024-11-21 141754](https://github.com/user-attachments/assets/5f044440-41bf-4927-8eac-f6f1c2948849)
-![Screenshot 2024-11-21 141748](https://github.com/user-attachments/assets/1576e42d-f69e-4442-88b8-779440d8ec9c)
-![Screenshot 2024-11-21 141743](https://github.com/user-attachments/assets/7dbd5e69-dc47-4be0-b48e-29cb6f0a8551)
-![Screenshot 2024-11-21 141734](https://github.com/user-attachments/assets/70ddfc58-a3b7-4be6-9e22-413c2b60e8d0)
-![Screenshot 2024-11-21 141724](https://github.com/user-attachments/assets/e24ee21a-5b39-40d4-af03-ed4ef6533c11)
-![Screenshot 2024-11-21 141640](https://github.com/user-attachments/assets/9e7eb354-77a4-424b-bbd3-819ad538a57f)
-![Screenshot 2024-11-21 141626](https://github.com/user-attachments/assets/bd4efccd-a3e2-41e0-bf8c-e71c24ed7a51)
-![Screenshot 2024-11-21 141614](https://github.com/user-attachments/assets/360dbcbb-f64c-48f2-9a15-d44af46dd6bc)
+
+![image](https://github.com/user-attachments/assets/bd413e69-7ef0-4b3e-b5c3-6efe1da033f9)
 
 # Result
           The Data cleaning process is completed successfuly
