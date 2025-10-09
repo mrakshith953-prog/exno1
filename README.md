@@ -28,176 +28,151 @@ ls drive/MyDrive/'Colab Notebooks'/DATA/
 
 # **DATA CLEANING**
 import pandas as pd
-import numpy as np
+df=pd.read_csv("data_set.csv")
+df
 
-df=pd.read_csv('drive/MyDrive/Data Science/Data_set.csv')
+<img width="1389" height="627" alt="image" src="https://github.com/user-attachments/assets/742332ec-7f26-4b1d-99d0-1e995eca4950" />
 
-df_null=df.isnull()
-print(df_null)
+<img width="865" height="603" alt="image" src="https://github.com/user-attachments/assets/1b4c6cba-0655-4a36-b9f5-5a7b22a9137e" />
 
-![image](https://github.com/user-attachments/assets/95e316a6-74e3-418b-8000-92551c30e9e2)
 
-df_sum=df.isnull().sum()
-print(df_sum)
+df.isnull()
 
-![image](https://github.com/user-attachments/assets/1bd96c0f-651e-41e6-96de-6a97d002bce9)
+<img width="1389" height="520" alt="image" src="https://github.com/user-attachments/assets/56e21034-f6fa-4b2c-ba52-f41e341b186e" />
 
-df_drop=df.isnull().dropna()
-print(df_drop)
+<img width="861" height="514" alt="image" src="https://github.com/user-attachments/assets/3cbc5045-299e-4089-a998-9ee8c199759c" />
 
-![image](https://github.com/user-attachments/assets/54a2b2f3-4995-4897-a96f-e0417d23d056)
 
-df_null_0=df.fillna(0)
-print(df_null_0)
+df.isnull().sum()
 
-![image](https://github.com/user-attachments/assets/cf25b6c8-f5bf-452d-bfda-9230e5538710)
+<img width="253" height="267" alt="image" src="https://github.com/user-attachments/assets/269f6dba-479e-4f1e-a636-c949505bb672" />
 
-df_null_ffill=df.ffill()
-print(df_null_ffill)
+df.notnull()
 
-![image](https://github.com/user-attachments/assets/6bb2f1ae-4bd9-468c-8126-7fa30cb7146a)
+<img width="1331" height="512" alt="image" src="https://github.com/user-attachments/assets/4df3ce44-4028-4888-ae1b-ac2c36b2f897" />
 
-df_bfill=df.bfill()
-print(df_bfill)
+<img width="863" height="531" alt="image" src="https://github.com/user-attachments/assets/206245a9-8015-4304-94c2-2b56a7f3fe75" />
 
-![image](https://github.com/user-attachments/assets/ef069b05-ed4a-4194-93a8-f09e962643d4)
+df.dropna(axis=0)
+df
 
-df_mean1=df['num_episodes'].fillna(df['num_episodes'].mean())
-print(df_mean1)
+<img width="1335" height="633" alt="image" src="https://github.com/user-attachments/assets/dd32beb9-4a9d-48a4-94b2-8b899106aa0a" />
 
-![image](https://github.com/user-attachments/assets/7e8cac54-abd7-4622-ad2f-618b2894e209)
+<img width="855" height="616" alt="image" src="https://github.com/user-attachments/assets/5962f2c6-d6ca-4e9a-80a1-bf1a948682c9" />
 
-df_mean2=df['rating'].fillna(df['rating'].mean())
-print(df_mean2)
+df.dropna(axis=1)
+df
 
-![image](https://github.com/user-attachments/assets/4ae535b7-5243-450a-a7a9-3679aa88933d)
+<img width="1338" height="636" alt="image" src="https://github.com/user-attachments/assets/e1426450-e84c-4412-b67d-3ba9a93d23c5" />
 
-df_mean3=df['current_overall_rank'].fillna(df['current_overall_rank'].mean())
-print(df_mean3)
+<img width="845" height="626" alt="image" src="https://github.com/user-attachments/assets/ca2c2c2a-639f-4fa9-acd0-1debccfe38f4" />
 
-![image](https://github.com/user-attachments/assets/d4edc900-9c5f-4977-b8e0-6edecb5a0f3b)
+dfs=df[df['num_episodes']>20]
+dfs
 
-df_mean4=df['lifetime_popularity_rank'].fillna(df['lifetime_popularity_rank'].mean())
-print(df_mean4)
 
-![image](https://github.com/user-attachments/assets/6252d34d-19bb-4ed8-8a2f-ff4a72ebb7c4)
+<img width="1363" height="780" alt="image" src="https://github.com/user-attachments/assets/8d4709f8-7ca3-4171-bd81-82a1fa82d77b" />
 
-df_mean5=df['watchers'].fillna(df['watchers'].mean())
-print(df_mean5)
 
-![image](https://github.com/user-attachments/assets/3274e50c-a7d0-4413-be9c-46feeee56f30)
+<img width="864" height="781" alt="image" src="https://github.com/user-attachments/assets/5b1a3f13-db94-4339-a8fe-77b1ceebe0e1" />
 
-df_dropna=df.dropna()
-print(df_dropna)
 
-![image](https://github.com/user-attachments/assets/0eb2fb50-f09a-4d56-91ab-1602e3c3e593)
+<img width="1376" height="389" alt="image" src="https://github.com/user-attachments/assets/49ede154-71d0-4a6d-a63c-ea96baeec523" />
 
-# **Outlier Detection and Removal - IQR**
 
+<img width="829" height="534" alt="image" src="https://github.com/user-attachments/assets/2921d263-6533-47d5-853a-e95f2fa70ef5" />
 
-import seaborn as sns
+df.iloc[:4]
 
-age=[1,3,28,27,25,92,30,39,40,50,26,24,29,94]
-af=pd.DataFrame(age)
-print(af)
 
-![image](https://github.com/user-attachments/assets/58e8c210-aa73-4619-bc87-7f8b3a2d4573)
+<img width="1331" height="329" alt="image" src="https://github.com/user-attachments/assets/3cb5706d-1d60-4242-a512-544d01e4b514" />
 
-sns.boxplot(af)
 
-![image](https://github.com/user-attachments/assets/8d330702-2d88-4769-a494-04439aea014c)
+<img width="849" height="330" alt="image" src="https://github.com/user-attachments/assets/1defa794-2820-497e-8e0a-4b66ebb8cb86" />
 
-sns.scatterplot(af)
+df.iloc[[1,3,5],[1,3]]
 
-![image](https://github.com/user-attachments/assets/24b2c6a8-3247-4908-954c-5cd9c0ad0b3d)
 
-q1=af.quantile(0.25)
-q2=af.quantile(0.5)
-q3=af.quantile(0.75)
+<img width="318" height="162" alt="image" src="https://github.com/user-attachments/assets/e9e64771-7c80-4fc9-a405-1eee0fba5ef1" />
 
-iqr=q3-q1
-print(iqr)
+df.iloc[0:4,1:4]
 
-Q1=np.percentile(af,25)
-Q2=np.percentile(af,50)
-Q3=np.percentile(af,75)
 
-IQR=Q3-Q1
+<img width="473" height="201" alt="image" src="https://github.com/user-attachments/assets/8c30c8a6-7717-4669-b7f9-e14fd318ba3c" />
 
-lower_bound=Q1-1.5*IQR
-upper_bound=Q3+1.5*IQR
+dff=df.fillna(0)
+dff
 
-outliers = [x for x in age if x < lower_bound or x > upper_bound]
 
-print('Q1:',Q1)
-print('Q3:',Q3)
-print('IQR:',IQR)
-print('Lower bound:',lower_bound)
-print('Upper bound:',upper_bound)
-print('Outliers:',outliers)
+<img width="1350" height="631" alt="image" src="https://github.com/user-attachments/assets/7c650b0e-24e8-4e3d-9d12-14a7301401c8" />
 
-![image](https://github.com/user-attachments/assets/aaaddf43-55ef-402c-8c97-8d9c813062de)
 
-af=af[((af>=lower_bound)&(af<=upper_bound))]
-print(af)
+<img width="855" height="624" alt="image" src="https://github.com/user-attachments/assets/57a11a9c-3343-43d3-be0f-e0361d1de72a" />
 
-![image](https://github.com/user-attachments/assets/ba3e4c10-d327-4ba3-8adf-d4627844c91f)
+df.fillna(method='ffill')
 
-af.dropna()
 
-![image](https://github.com/user-attachments/assets/beac3af5-b7ef-4c3c-aed0-d28a4733d154)
+<img width="1340" height="751" alt="image" src="https://github.com/user-attachments/assets/c4c01fb2-03ce-4ba2-9f52-1bdafef236a1" />
 
-sns.boxplot(af)
 
-![image](https://github.com/user-attachments/assets/5d8b6f96-84b4-42db-aaa3-9a4389801374)
+<img width="862" height="715" alt="image" src="https://github.com/user-attachments/assets/45f8a4e0-41db-41b5-84d1-55f1c1592548" />
 
-sns.scatterplot(af)
+df.fillna(method='bfill')
 
-![image](https://github.com/user-attachments/assets/b5e89b08-50e3-489b-b0b1-58d4b2ce25ff)
 
-# **Z Score**
+<img width="1345" height="653" alt="image" src="https://github.com/user-attachments/assets/c3aef5af-ed65-425f-be90-d7788437f329" />
 
-from scipy import stats
 
-data=[1,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,66,69,72,75,78,81,84,87,90,93]
-df=pd.DataFrame(data)
+<img width="857" height="601" alt="image" src="https://github.com/user-attachments/assets/c879ee8f-e086-4383-b902-16041026fddd" />
 
-sns.boxplot(df)
+df['num_episodes'].fillna(value=df['num_episodes'].mean())
 
-![image](https://github.com/user-attachments/assets/674c8fdc-a443-41ac-b33e-f3f9faed6b5b)
 
-mean=np.mean(data)
-print(mean)
-50.724137931034484
+<img width="444" height="263" alt="image" src="https://github.com/user-attachments/assets/28fc2397-fdd8-4e0b-8ed0-3da3ad081625" />
 
-std=np.std(data)
-print(std)
-25.59889080534025
+df['num_episodes'].fillna(value=df['num_episodes'].mean(),inplace=False)
 
-z=np.abs(stats.zscore(df))
-print(z)
 
-![image](https://github.com/user-attachments/assets/20f0d255-f5f5-4d01-8156-7e7cb9c3e0d4)
+<img width="458" height="262" alt="image" src="https://github.com/user-attachments/assets/ea033c2b-187b-4148-8a57-32bba70cde28" />
 
-threshold=3
-outliers = df[abs(df) > 3]
-print("Outliers:")
-print(outliers)
+df["num_episodes"]=df["num_episodes"].astype('Int64')
+df["num_episodes"]
 
-![image](https://github.com/user-attachments/assets/a43290be-1191-433d-be5a-25177cffc05e)
+<img width="531" height="268" alt="image" src="https://github.com/user-attachments/assets/d35b34cc-3bc9-490e-aeed-5038c2109e4f" />
 
-df_cleaned = df[(z <= threshold)]
-print(df_cleaned)
+df['country']=df['country'].astype(object)
+df['country']
 
-![image](https://github.com/user-attachments/assets/518250d2-adfc-469a-976d-c7c32ee650e5)
 
-sns.boxplot(df_cleaned)
+<img width="414" height="269" alt="image" src="https://github.com/user-attachments/assets/c0200328-a718-4e74-a15d-53a80164780d" />
 
-![image](https://github.com/user-attachments/assets/000fb4db-9817-4342-a973-c3516e8fa090)
+import matplotlib.pyplot as plt
+df_cleaned=df.dropna(subset=['country'])
+df_cleaned=df.dropna(subset=["num_episodes"])
+plt.bar(df_cleaned['country'],df_cleaned["num_episodes"])
+plt.show()
 
-sns.scatterplot(df_cleaned)
 
-![image](https://github.com/user-attachments/assets/bd413e69-7ef0-4b3e-b5c3-6efe1da033f9)
+<img width="713" height="517" alt="image" src="https://github.com/user-attachments/assets/2cfa6e29-8e63-4177-9a73-7eea89864bd8" />
+
+plt.barh(df["num_episodes"],df['country'])
+plt.show()
+
+
+<img width="691" height="517" alt="image" src="https://github.com/user-attachments/assets/503a1b35-031c-4a34-8f19-522c7647003b" />
+
+plt.plot(df["num_episodes"],df['country'])
+plt.show()
+
+
+<img width="797" height="509" alt="image" src="https://github.com/user-attachments/assets/84564a9b-97ad-4b57-a6d3-23d65be4b4dd" />
+
+plt.scatter(df["num_episodes"],df['country'])
+plt.show()
+
+
+<img width="791" height="529" alt="image" src="https://github.com/user-attachments/assets/3a42fa42-a629-410c-8dfe-bc0987c9a67f" />
+
 
 # Result
           The Data cleaning process is completed successfuly
