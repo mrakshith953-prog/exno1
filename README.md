@@ -199,5 +199,6 @@ sns.scatterplot(df_cleaned)
 
 ![image](https://github.com/user-attachments/assets/bd413e69-7ef0-4b3e-b5c3-6efe1da033f9)
 
+
 # Result
           The Data cleaning process is completed successfuly
